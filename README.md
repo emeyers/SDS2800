@@ -9,8 +9,14 @@ so no R server is needed.
 | App | Live page | Source |
 |-----|-----------|--------|
 | Gamma distribution ISI / raster demo | https://emeyers.github.io/SDS2800/gamma_app/ | [`apps/gamma_app/app.R`](apps/gamma_app/app.R) |
+| Pop-out visual search experiment | https://emeyers.github.io/SDS2800/popout_experiment/ | [`docs/popout_experiment/`](docs/popout_experiment/) |
 
-The first load takes ~10-20 s while webR downloads.
+The first load of a Shiny app takes ~10-20 s while webR downloads.
+
+The pop-out experiment is plain HTML/JavaScript (a web port of a PsychoPy
+experiment), so its source in `docs/popout_experiment/` is served as-is, with no
+export step. Students enter an ID, complete the task (~10-15 min), and download a
+CSV of their data at the end. Add `?blocks=1` to the URL for a short demo.
 
 ## Layout
 

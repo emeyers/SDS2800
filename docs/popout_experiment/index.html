@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pop-out Search Experiment</title>
+  <link rel="icon" href="data:,">
+  <style>
+    :root { color-scheme: dark; }
+    html, body { margin: 0; height: 100%; background: #000; color: #eee;
+                 font-family: Arial, Helvetica, sans-serif; overflow: hidden; }
+    body.running { cursor: none; }
+
+    #screen { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+    #message { position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+               padding: 0 5vw; text-align: center; white-space: pre-line; color: #fff;
+               font-size: 5vh; line-height: 1.35; }
+    #message .inner { max-width: 120vh; }
+    #message table { margin: 1.5em auto 0; border-collapse: collapse; font-size: 0.6em; }
+    #message th, #message td { padding: 0.25em 0.9em; border-bottom: 1px solid #444; }
+    #message button { margin-top: 1.2em; font: inherit; font-size: 0.6em; cursor: pointer;
+                      padding: 0.5em 1.2em; border-radius: 6px; border: 0; background: #ddd; color: #000; }
+    body.finished { cursor: auto; }
+
+    #start { position: fixed; inset: 0; overflow-y: auto; display: flex; align-items: center;
+             justify-content: center; padding: 24px 16px; box-sizing: border-box; background: #111;
+             z-index: 1; }
+    #start .card { max-width: 560px; width: 100%; line-height: 1.5; }
+    #start h1 { font-size: 1.6rem; margin: 0 0 0.6em; }
+    #start ul { padding-left: 1.2em; }
+    #start label { display: block; margin: 1.2em 0 0.3em; font-weight: bold; }
+    #start input { font: inherit; padding: 0.5em; width: 100%; box-sizing: border-box;
+                   border-radius: 6px; border: 1px solid #555; background: #222; color: #eee; }
+    #start button { margin-top: 1.2em; font: inherit; font-weight: bold; padding: 0.7em 1.6em;
+                    border-radius: 6px; border: 0; background: #4a9; color: #000; cursor: pointer; }
+    #start button:disabled { background: #555; color: #999; cursor: wait; }
+    #status { margin-top: 0.8em; color: #aaa; min-height: 1.5em; }
+    #status.error { color: #f77; }
+    #touch-warning { display: none; color: #fc6; }
+  </style>
+</head>
+<body>
+  <div id="start">
+    <div class="card">
+      <h1>Pop-out search experiment</h1>
+      <p>Diamonds will flash briefly on the screen, and you will report which side of one diamond
+         is cut off by pressing <b>Z</b> (left) or <b>M</b> (right). It takes about 10–15 minutes.</p>
+      <ul>
+        <li>Use a laptop or desktop computer with a physical keyboard.</li>
+        <li>Sit in a quiet place and close other tabs and programs.</li>
+        <li>The page will switch to full screen. Don't switch windows until you're finished.</li>
+        <li>At the end you'll download a data file. Keep it, because that file is your data.</li>
+      </ul>
+      <p id="touch-warning">This looks like a touch device. The experiment needs a physical keyboard.</p>
+      <form id="start-form">
+        <label for="participant">Participant ID</label>
+        <input id="participant" name="participant" autocomplete="off" required
+               placeholder="e.g., your initials or the ID your instructor gave you">
+        <button id="start-button" type="submit" disabled>Loading images…</button>
+        <div id="status" role="status"></div>
+      </form>
+    </div>
+  </div>
+
+  <canvas id="screen"></canvas>
+  <div id="message"><div class="inner"></div></div>
+
+  <script src="conditions.js"></script>
+  <script src="experiment.js"></script>
+</body>
+</html>
